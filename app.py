@@ -1,5 +1,7 @@
 from tkinter import *
 import sys
+import sqlite3
+
 
 class Window(Frame):
 	def __init__(self, master=None):
@@ -8,6 +10,13 @@ class Window(Frame):
 		self.init_window()
 	# Show passwords function that display passwords dialog
 	def show_passwords(self, event):
+		username = self.username.get()
+		password = self.password.get()
+
+		print(f'Username = {username} & Password = {password}')
+
+	# Sign up method when the account doesn't exist
+	def signup(self, event):
 		pass
 
 	def init_window(self):
@@ -15,22 +24,25 @@ class Window(Frame):
 
 		Label(self.master, text='Login to get a list of stored passwords', font=('Arial', 12)).pack(side=TOP, pady=20)
 
-		frame = Frame(self.master)
-		frame.pack(expand=True, fill=Y, side=TOP)
+		self.frame = Frame(self.master)
+		self.frame.pack(expand=True, fill=Y, side=TOP)
 
 		# Login Username
-		Label(frame, text='Username: ', font=('Arial', 10)).grid(row=0, column=0, padx=2, pady=(40, 0), sticky=N)
-		username = Entry(frame, font=('Arial', 10), width=25, relief=SOLID, borderwidth=1)
-		username.grid(row=0, column=1,ipady=4, ipadx=5, pady=(40, 0))
+		Label(self.frame, text='Username: ', font=('Arial', 10)).grid(row=0, column=0, pady=(40, 0), sticky=N)
+		self.username = Entry(self.frame, font=('Arial', 10), width=25, relief=SOLID, borderwidth=1)
+		self.username.grid(row=0, column=1,ipady=4, ipadx=5, pady=(40, 0))
 
 		# Login password
-		Label(frame, text='Password: ', font=('Arial', 10)).grid(row=1, column=0, padx=2, pady=(40, 20))
-		password = Entry(frame, font=('Arial', 10), width=25, relief=SOLID, borderwidth=1)
-		password.grid(row=1, column=1, ipady=4, ipadx=5, pady=(40, 20))
+		Label(self.frame, text='Password: ', font=('Arial', 10)).grid(row=1, column=0, pady=(40, 20))
+		self.password = Entry(self.frame, font=('Arial', 10), show='•', width=25, relief=SOLID, borderwidth=1)
+		self.password.grid(row=1, column=1, ipady=4, ipadx=5, pady=(40, 20))
 
-		login_btn = Button(frame, text='Login', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=0, default=ACTIVE)
-		login_btn.grid(row=2, column=0, columnspan=3, ipady=2, pady=(10,10))
-		login_btn.bind('<Button-1>', self.show_passwords)
+		self.login_btn = Button(self.frame, text='Login', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=0, default=ACTIVE)
+		self.login_btn.grid(row=2, column=0, ipady=2, pady=(10,10))
+		self.login_btn.bind('<Button-1>', self.show_passwords)
+		self.signup_btn = Button(self.frame, text='Sign Up', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
+		self.signup_btn.grid(row=2, column=1, ipady=2, pady=(10,10))
+		self.signup_btn.bind('<Button-1>', self.signup)
 
 root = Tk()
 root.geometry("550x350")
