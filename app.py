@@ -1,8 +1,21 @@
 from tkinter import *
 import sys
 import sqlite3
+import os
 
+# Change the directory to the current directory
+# To ensure that I can access everything from this directory
 
+os.chdir(os.path.abspath(os.path.dirname(__file__)))
+
+# Table name
+USERS_TABLE = 'USERS'
+
+# Connect to the database which store data
+DATABASE = "db.sqlite3"
+connection = sqlite3.connect(DATABASE)
+
+# A starter class for the application
 class Window(Frame):
 	def __init__(self, master=None):
 		Frame.__init__(self, master)
@@ -17,7 +30,7 @@ class Window(Frame):
 
 	# Sign up method when the account doesn't exist
 	def signup(self, event):
-		pass
+		# Check if the user doesn't exists in the
 
 	def init_window(self):
 		self.master.title('Secure Password Locker')
