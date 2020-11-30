@@ -41,33 +41,35 @@ class Window(Frame):
 	# View functions
 	def welcome_view(self):
 		# Title label for the form
-		Label(self.master, text='Login to get a list of stored passwords', font=('Arial', 12)).pack(side=TOP, pady=20)
+		Label(self.frame, text='Login to get a list of stored passwords', font=('Arial', 12)).grid(row=0, column=0, columnspan=3,  pady=20)
 
 		# Login Username
-		Label(self.frame, text='Username: ', font=('Arial', 10)).grid(row=0, column=0, pady=(40, 0), sticky=N)
+		Label(self.frame, text='Username: ', font=('Arial', 10)).grid(row=1, column=0, pady=(40, 0), sticky=N)
 		self.username = Entry(self.frame, font=('Arial', 10), width=25, relief=SOLID, borderwidth=1)
-		self.username.grid(row=0, column=1,ipady=4, ipadx=5, pady=(40, 0))
+		self.username.grid(row=1, column=1,ipady=4, ipadx=5, pady=(40, 0))
 
 		# Login password
-		Label(self.frame, text='Password: ', font=('Arial', 10)).grid(row=1, column=0, pady=(40, 20))
+		Label(self.frame, text='Password: ', font=('Arial', 10)).grid(row=2, column=0, pady=(40, 20))
 		self.password = Entry(self.frame, font=('Arial', 10), show='•', width=25, relief=SOLID, borderwidth=1)
-		self.password.grid(row=1, column=1, ipady=4, ipadx=5, pady=(40, 20))
+		self.password.grid(row=2, column=1, ipady=4, ipadx=5, pady=(40, 20))
 
 		self.login_btn = Button(self.frame, text='Login', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=0, default=ACTIVE)
-		self.login_btn.grid(row=2, column=0, ipady=2, pady=(10,10))
+		self.login_btn.grid(row=3, column=0, ipady=2, pady=(10,10))
 		self.login_btn.bind('<Button-1>', self.show_passwords)
 		self.signup_btn = Button(self.frame, text='Sign Up', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
-		self.signup_btn.grid(row=2, column=1, ipady=2, pady=(10,10))
+		self.signup_btn.grid(row=3, column=1, ipady=2, pady=(10,10))
 		self.signup_btn.bind('<Button-1>', self.signup)
 
 	# Navigation view
 	def navigation_view(self):
 		# Create two navigation buttons
 		self.add_btn = Button(self.frame, text='Add', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
-		self.add_btn.grid(row=0, column=0, ipady=2, pady=(10,10))
+		self.add_btn.grid(row=0, column=0, ipady=2, pady=(10,10), padx=(0, 20))
+		self.add_btn.bind('<Button-1>', self.add_password)
 
 		self.view_btn = Button(self.frame, text='View', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
-		self.view_btn.grid(row=0, column=1, ipady=2, pady=(10,10))
+		self.view_btn.grid(row=0, column=1, ipady=2, pady=(10,10), padx=(20, 0))
+		self.view_btn.bind('<Button-1>', self.view_password)
 
 	# Show passwords function that display passwords dialog
 	def show_passwords(self, event):
