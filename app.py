@@ -15,6 +15,11 @@ PASSWORDS_TABLE = 'PASSWORDS'
 
 # # Connect to the database which store data
 # DATABASE = "db.sqlite3"
+
+# if DATABASE not in os.listdir():
+# 	os.mkdir(DATABASE)
+
+
 # connection = sqlite3.connect(DATABASE)
 # cursor = connection.cursor()
 # cursor.execute(f"""CREATE TABLE IF NOT EXISTS {USERS_TABLE} (
