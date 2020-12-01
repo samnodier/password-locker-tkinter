@@ -38,6 +38,14 @@ class Window(Frame):
 		self.master = master
 		self.init_window()
 
+	# Add password function
+	def add_password(self):
+		pass
+
+	# Create a show password function
+	def show_password(self):
+		pass
+
 	# View functions
 	def welcome_view(self):
 		# Title label for the form
