@@ -13,28 +13,28 @@ os.chdir(os.path.abspath(os.path.dirname(__file__)))
 USERS_TABLE = 'USERS'
 PASSWORDS_TABLE = 'PASSWORDS'
 
-# # Connect to the database which store data
-# DATABASE = "db.sqlite3"
+# Connect to the database which store data
+DATABASE = "db.sqlite3"
 
-# if DATABASE not in os.listdir():
-# 	os.mkdir(DATABASE)
+if DATABASE not in os.listdir():
+	os.mkdir(DATABASE)
 
 
-# connection = sqlite3.connect(DATABASE)
-# cursor = connection.cursor()
-# cursor.execute(f"""CREATE TABLE IF NOT EXISTS {USERS_TABLE} (
-# 	user_id TEXT PRIMARY KEY,
-# 	username TEXT NOT NULL,
-# 	password TEXT NOT NULL)
-# """)
-# cursor.execute(f"""CREATE TABLE IF NOT EXISTS {PASSWORDS_TABLE} (
-# 	password_id TEXT PRIMARY KEY,
-# 	title TEXT,
-#	link TEXT NOT NULL,
-# 	password TEXT NOT NULL,
-# 	password_owner TEXT NOT NULL,
-# 	FOREIGN KEY(password_owner) REFERENCES {USERS_TABLE} (user_id))
-# """)
+connection = sqlite3.connect(DATABASE)
+cursor = connection.cursor()
+cursor.execute(f"""CREATE TABLE IF NOT EXISTS {USERS_TABLE} (
+	user_id TEXT PRIMARY KEY,
+	username TEXT NOT NULL,
+	password TEXT NOT NULL)
+""")
+cursor.execute(f"""CREATE TABLE IF NOT EXISTS {PASSWORDS_TABLE} (
+	password_id TEXT PRIMARY KEY,
+	title TEXT,
+	link TEXT NOT NULL,
+	password TEXT NOT NULL,
+	password_owner TEXT NOT NULL,
+	FOREIGN KEY(password_owner) REFERENCES {USERS_TABLE} (user_id))
+""")
 
 # A starter class for the application
 class Window(Frame):
@@ -77,17 +77,17 @@ class Window(Frame):
 		self.view_btn.bind('<Button-1>', self.view_password)
 
 		# Create entry fields
-		Label(self.frame, text='Title: ', font=('Arial', 10)).grid(row=1, column=0, pady=(40, 20))
+		Label(self.frame, text='Title: ', font=('Arial', 10)).grid(row=1, column=0, pady=(40, 20), sticky=W)
 		self.title = Entry(self.frame, font=('Arial', 10), width=25, relief=SOLID, borderwidth=1)
-		self.title.grid(row=1, column=1, ipady=4, ipadx=5, pady=(40, 20))
+		self.title.grid(row=1, column=1, ipady=4, ipadx=5, pady=(20, 10))
 
-		Label(self.frame, text='Link: ', font=('Arial', 10)).grid(row=2, column=0, pady=(40, 20))
+		Label(self.frame, text='Link: ', font=('Arial', 10)).grid(row=2, column=0, pady=(40, 20), sticky=W)
 		self.link = Entry(self.frame, font=('Arial', 10), width=25, relief=SOLID, borderwidth=1)
-		self.link.grid(row=2, column=1, ipady=4, padx=5, pady=(40, 20))
+		self.link.grid(row=2, column=1, ipady=4, ipadx=5, pady=(10, 10))
 
-		Label(self.frame, text='Password: ', font=('Arial', 10)).grid(row=2, column=0, pady=(40, 20))
+		Label(self.frame, text='Password: ', font=('Arial', 10)).grid(row=3, column=0, pady=(40, 20), sticky=W)
 		self.password = Entry(self.frame, font=('Arial', 10), show='•', width=25, relief=SOLID, borderwidth=1)
-		self.password.grid(row=2, column=1, ipady=4, ipadx=5, pady=(40, 20))
+		self.password.grid(row=3, column=1, ipady=4, ipadx=5, pady=(10, 20))
 
 
 	# Add password function
@@ -100,7 +100,12 @@ class Window(Frame):
 
 	# Create a show password function
 	def view_password(self, event):
-		pass
+		# Create an add button to enable adding a new password
+		# While viewing the stored passwords
+		self.add_btn = Button(self.frame, text='Add', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
+		self.add_btn.grid(row=0, column=0, ipady=2, pady=(10,10), padx=(0, 20))
+		self.add_btn.bind('<Button-1>', self.add_password)
+
 
 	# Show passwords function that display passwords dialog
 	def show_passwords(self, event):
