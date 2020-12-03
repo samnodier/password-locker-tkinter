@@ -43,14 +43,6 @@ class Window(Frame):
 		self.master = master
 		self.init_window()
 
-	# Add password function
-	def add_password(self):
-		pass
-
-	# Create a show password function
-	def show_password(self):
-		pass
-
 	# View functions
 	def welcome_view(self):
 		# Title label for the form
@@ -84,6 +76,32 @@ class Window(Frame):
 		self.view_btn.grid(row=0, column=1, ipady=2, pady=(10,10), padx=(20, 0))
 		self.view_btn.bind('<Button-1>', self.view_password)
 
+		# Create entry fields
+		Label(self.frame, text='Title: ', font=('Arial', 10)).grid(row=1, column=0, pady=(40, 20))
+		self.title = Entry(self.frame, font=('Arial', 10), width=25, relief=SOLID, borderwidth=1)
+		self.title.grid(row=1, column=1, ipady=4, ipadx=5, pady=(40, 20))
+
+		Label(self.frame, text='Link: ', font=('Arial', 10)).grid(row=2, column=0, pady=(40, 20))
+		self.link = Entry(self.frame, font=('Arial', 10), width=25, relief=SOLID, borderwidth=1)
+		self.link.grid(row=2, column=1, ipady=4, padx=5, pady=(40, 20))
+
+		Label(self.frame, text='Password: ', font=('Arial', 10)).grid(row=2, column=0, pady=(40, 20))
+		self.password = Entry(self.frame, font=('Arial', 10), show='•', width=25, relief=SOLID, borderwidth=1)
+		self.password.grid(row=2, column=1, ipady=4, ipadx=5, pady=(40, 20))
+
+
+	# Add password function
+	def add_password(self, event):
+		title = self.title.get()
+		link = self.link.get()
+		password = self.password.get()
+
+		print(f"Added {title}, {link}, and {password}")
+
+	# Create a show password function
+	def view_password(self, event):
+		pass
+
 	# Show passwords function that display passwords dialog
 	def show_passwords(self, event):
 		username = self.username.get()
@@ -105,7 +123,7 @@ class Window(Frame):
 		password = self.password.get()
 
 		# Connect to the database
-		cursor = connection.cursor()
+		# cursor = connection.cursor()
 		print(username, password)
 
 	def init_window(self):
