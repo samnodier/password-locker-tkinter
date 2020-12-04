@@ -60,7 +60,7 @@ class Window(Frame):
 
 		self.login_btn = Button(self.frame, text='Login', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=0, default=ACTIVE)
 		self.login_btn.grid(row=3, column=0, ipady=2, pady=(10,10))
-		self.login_btn.bind('<Button-1>', self.show_passwords)
+		self.login_btn.bind('<Button-1>', self.view_password)
 		self.signup_btn = Button(self.frame, text='Sign Up', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
 		self.signup_btn.grid(row=3, column=1, ipady=2, pady=(10,10))
 		self.signup_btn.bind('<Button-1>', self.signup)
@@ -89,6 +89,11 @@ class Window(Frame):
 		self.password = Entry(self.frame, font=('Arial', 10), show='•', width=25, relief=SOLID, borderwidth=1)
 		self.password.grid(row=3, column=1, ipady=4, ipadx=5, pady=(10, 20))
 
+		# Add a logout button
+		self.logout_btn = Button(self.frame, text='View', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
+		self.logout_btn.grid(row=4, column=0, ipady=2, pady=(10,10), padx=(20,0), columnspan=2)
+		self.logout_btn.bind('<Button-1>', self.logout)
+
 
 	# Add password function
 	def add_password(self, event):
@@ -100,17 +105,17 @@ class Window(Frame):
 
 	# Create a show password function
 	def view_password(self, event):
+		# Grab the user password
+		username = self.username.get()
+		password = self.password.get()
+
+		# Validate data
 		# Create an add button to enable adding a new password
 		# While viewing the stored passwords
 		self.add_btn = Button(self.frame, text='Add', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
 		self.add_btn.grid(row=0, column=0, ipady=2, pady=(10,10), padx=(0, 20))
 		self.add_btn.bind('<Button-1>', self.add_password)
 
-
-	# Show passwords function that display passwords dialog
-	def show_passwords(self, event):
-		username = self.username.get()
-		password = self.password.get()
 
 		# Clear the frame
 		for widgets in self.frame.winfo_children():
@@ -120,6 +125,10 @@ class Window(Frame):
 		self.navigation_view()
 
 		print(f'Username = {username} & Password = {password}')
+
+	# Create the logout function
+	def logout(self, event):
+		print('logout')
 
 	# Sign up method when the account doesn't exist
 	def signup(self, event):
