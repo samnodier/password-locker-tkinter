@@ -141,6 +141,7 @@ class Window(Frame):
 		# Create a welcome view
 		self.welcome_view()
 
+connection.close()
 root = Tk()
 root.geometry("550x350")
 app = Window(root)
