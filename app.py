@@ -60,7 +60,7 @@ class Window(Frame):
 
 		self.login_btn = Button(self.frame, text='Login', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=0, default=ACTIVE)
 		self.login_btn.grid(row=3, column=0, ipady=2, pady=(10,10))
-		self.login_btn.bind('<Button-1>', self.view_password)
+		self.login_btn.bind('<Button-1>', self.add_password)
 		self.signup_btn = Button(self.frame, text='Sign Up', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
 		self.signup_btn.grid(row=3, column=1, ipady=2, pady=(10,10))
 		self.signup_btn.bind('<Button-1>', self.signup)
@@ -74,7 +74,7 @@ class Window(Frame):
 
 		self.view_btn = Button(self.frame, text='View', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
 		self.view_btn.grid(row=0, column=1, ipady=2, pady=(10,10), padx=(20, 0))
-		self.view_btn.bind('<Button-1>', self.view_password)
+		self.view_btn.bind('<Button-1>', self.view_passwords)
 
 		# Create entry fields
 		Label(self.frame, text='Title: ', font=('Arial', 10)).grid(row=1, column=0, pady=(40, 20), sticky=W)
@@ -90,10 +90,19 @@ class Window(Frame):
 		self.password.grid(row=3, column=1, ipady=4, ipadx=5, pady=(10, 20))
 
 		# Add a logout button
-		self.logout_btn = Button(self.frame, text='View', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
+		self.logout_btn = Button(self.frame, text='Logout', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
 		self.logout_btn.grid(row=4, column=0, ipady=2, pady=(10,10), padx=(20,0), columnspan=2)
 		self.logout_btn.bind('<Button-1>', self.logout)
 
+
+	# Define the function to view the list of passwords
+	def view_passwords(self, event):
+		# Clear the frame
+		for widgets in self.frame.winfo_children():
+			widgets.destroy()
+
+		# Create the title of the frame for user orientation
+		Label(self.frame, text='Login to get a list of stored passwords', font=('Arial', 12)).grid(row=0, column=0, columnspan=3,  pady=20)
 
 	# Add password function
 	def add_password(self, event):
@@ -104,7 +113,7 @@ class Window(Frame):
 		print(f"Added {title}, {link}, and {password}")
 
 	# Create a show password function
-	def view_password(self, event):
+	def add_password(self, event):
 		# Grab the user password
 		username = self.username.get()
 		password = self.password.get()
@@ -128,7 +137,13 @@ class Window(Frame):
 
 	# Create the logout function
 	def logout(self, event):
-		print('logout')
+		# Clear the frame
+		for widgets in self.frame.winfo_children():
+			widgets.destroy()
+
+		# Reset the frame view to the welcome view
+		self.welcome_view()
+
 
 	# Sign up method when the account doesn't exist
 	def signup(self, event):
@@ -138,7 +153,12 @@ class Window(Frame):
 
 		# Connect to the database
 		# cursor = connection.cursor()
-		print(username, password)
+
+		# Clear the frame and add navigation screen
+		for widgets in self.frame.winfo_children():
+			widgets.destroy()
+
+		self.navigation_view()
 
 	def init_window(self):
 		self.master.title('Secure Password Locker')
@@ -152,6 +172,6 @@ class Window(Frame):
 
 connection.close()
 root = Tk()
-root.geometry("550x350")
+root.geometry("550x370")
 app = Window(root)
 root.mainloop()
