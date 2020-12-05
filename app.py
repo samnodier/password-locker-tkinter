@@ -158,6 +158,17 @@ class Window(Frame):
 		username = self.username.get()
 		password = self.password.get()
 
+		user = cursor.execute(f"SELECT username FROM {USERS_TABLE} WHERE username=={username}")
+		if user:
+			print(user)
+		else:
+			# Username doesn't already exist in the database
+			# So sign him up
+			print('Sign up')
+
+		# Add the new password into the database
+
+
 		# Clear the frame and add navigation screen
 		for widgets in self.frame.winfo_children():
 			widgets.destroy()
