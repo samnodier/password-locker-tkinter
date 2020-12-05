@@ -22,6 +22,9 @@ if DATABASE not in os.listdir():
 
 connection = sqlite3.connect(DATABASE)
 cursor = connection.cursor()
+
+# Create database tables if they don't exist
+
 cursor.execute(f"""CREATE TABLE IF NOT EXISTS {USERS_TABLE} (
 	user_id TEXT PRIMARY KEY,
 	username TEXT NOT NULL,
@@ -35,6 +38,8 @@ cursor.execute(f"""CREATE TABLE IF NOT EXISTS {PASSWORDS_TABLE} (
 	password_owner TEXT NOT NULL,
 	FOREIGN KEY(password_owner) REFERENCES {USERS_TABLE} (user_id))
 """)
+
+
 
 # A starter class for the application
 class Window(Frame):
@@ -102,7 +107,7 @@ class Window(Frame):
 			widgets.destroy()
 
 		# Create the title of the frame for user orientation
-		Label(self.frame, text='Login to get a list of stored passwords', font=('Arial', 12)).grid(row=0, column=0, columnspan=3,  pady=20)
+		Label(self.frame, text='Click the COPY button\nTo copy the password into the clipboard', font=('Arial', 12)).grid(row=0, column=0, columnspan=3,  pady=20)
 
 	# Add password function
 	def add_password(self, event):
@@ -137,6 +142,9 @@ class Window(Frame):
 
 	# Create the logout function
 	def logout(self, event):
+		# Close the database once logging out
+		connection.close()
+
 		# Clear the frame
 		for widgets in self.frame.winfo_children():
 			widgets.destroy()
@@ -144,15 +152,11 @@ class Window(Frame):
 		# Reset the frame view to the welcome view
 		self.welcome_view()
 
-
 	# Sign up method when the account doesn't exist
 	def signup(self, event):
 		# Check if the user doesn't already exist in the database
 		username = self.username.get()
 		password = self.password.get()
-
-		# Connect to the database
-		# cursor = connection.cursor()
 
 		# Clear the frame and add navigation screen
 		for widgets in self.frame.winfo_children():
