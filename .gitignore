@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# You can get rid of this line
+# Untrack my descriptive text files
+*.txt
