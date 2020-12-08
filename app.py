@@ -1,8 +1,13 @@
+import os
+import sqlite3
+import sys
+import uuid
+
 from cryptography.fernet import Fernet
 from tkinter import *
-import sys
-import sqlite3
-import os
+
+# Encryption key
+KEY = b'7Jv5d64z6y6B9vHqs6FL0Dcppt8Tf-mPML4kyPXLeIY='
 
 # Change the directory to the current directory
 # To ensure that I can access everything from this directory
@@ -17,7 +22,7 @@ PASSWORDS_TABLE = 'PASSWORDS'
 DATABASE = "db.sqlite3"
 
 if DATABASE not in os.listdir():
-	os.mkdir(DATABASE)
+	open(DATABASE, 'a').close()
 
 
 connection = sqlite3.connect(DATABASE)
@@ -99,6 +104,10 @@ class Window(Frame):
 		self.logout_btn.grid(row=4, column=0, ipady=2, pady=(10,10), padx=(20,0), columnspan=2)
 		self.logout_btn.bind('<Button-1>', self.logout)
 
+	# Validate the entered data
+	def validate_data(self, username, password):
+		if(len(username) > 0 and len(password) >= 8):
+			return True
 
 	# Define the function to view the list of passwords
 	def view_passwords(self, event):
@@ -154,26 +163,36 @@ class Window(Frame):
 
 	# Sign up method when the account doesn't exist
 	def signup(self, event):
-		# Check if the user doesn't already exist in the database
+		# Validate data and assign them values
 		username = self.username.get()
 		password = self.password.get()
 
-		user = cursor.execute(f"SELECT username FROM {USERS_TABLE} WHERE username=={username}")
-		if user:
-			print(user)
-		else:
-			# Username doesn't already exist in the database
-			# So sign him up
-			print('Sign up')
+		if self.validate_data(username, password):
+			# Check if the user doesn't already exist in the database
 
-		# Add the new password into the database
+			connection = sqlite3.connect(DATABASE)
+			cursor = connection.cursor()
+
+			user = [row for row in cursor.execute(f"SELECT username FROM {USERS_TABLE} WHERE username = '{username}'")]
+
+			if user:
+				print(user)
+			else:
+				# Username doesn't already exist in the database
+				# So sign him up
+				cipher_suite = Fernet(KEY)
+				ciphered_text = cipher_suite.encrypt(password.encode())
+
+				print(username, ciphered_text)
+
+			# Add the new password into the database
 
 
-		# Clear the frame and add navigation screen
-		for widgets in self.frame.winfo_children():
-			widgets.destroy()
+			# Clear the frame and add navigation screen
+			for widgets in self.frame.winfo_children():
+				widgets.destroy()
 
-		self.navigation_view()
+			self.navigation_view()
 
 	def init_window(self):
 		self.master.title('Secure Password Locker')
