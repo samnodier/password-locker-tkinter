@@ -5,6 +5,7 @@ import uuid
 
 from cryptography.fernet import Fernet
 from tkinter import *
+from tkinter import messagebox
 
 # Encryption key
 KEY = b'7Jv5d64z6y6B9vHqs6FL0Dcppt8Tf-mPML4kyPXLeIY='
@@ -70,7 +71,7 @@ class Window(Frame):
 
 		self.login_btn = Button(self.frame, text='Login', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=0, default=ACTIVE)
 		self.login_btn.grid(row=3, column=0, ipady=2, pady=(10,10))
-		self.login_btn.bind('<Button-1>', self.add_password)
+		self.login_btn.bind('<Button-1>', self.login)
 		self.signup_btn = Button(self.frame, text='Sign Up', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
 		self.signup_btn.grid(row=3, column=1, ipady=2, pady=(10,10))
 		self.signup_btn.bind('<Button-1>', self.signup)
@@ -127,7 +128,7 @@ class Window(Frame):
 		print(f"Added {title}, {link}, and {password}")
 
 	# Create a show password function
-	def add_password(self, event):
+	def login(self, event):
 		# Grab the user password
 		username = self.username.get()
 		password = self.password.get()
@@ -176,23 +177,32 @@ class Window(Frame):
 			user = [row for row in cursor.execute(f"SELECT username FROM {USERS_TABLE} WHERE username = '{username}'")]
 
 			if user:
-				print(user)
+				Label(self.frame, text="Username unavailable", font=('Arial', 8)).grid(row=5, column=0, pady=(40, 20), columnspan=3)
 			else:
-				# Username doesn't already exist in the database
-				# So sign him up
-				cipher_suite = Fernet(KEY)
-				ciphered_text = cipher_suite.encrypt(password.encode())
+				try:
+					# Username doesn't already exist in the database
+					# So sign him up
+					cipher_suite = Fernet(KEY)
+					ciphered_text = cipher_suite.encrypt(password.encode())
 
-				print(username, ciphered_text)
+					user = (str(uuid.uuid4()), username, ciphered_text.decode())
 
-			# Add the new password into the database
+					# Insert the username and ciphered password into the database
+					cursor.execute(f"INSERT INTO {USERS_TABLE} VALUES (?,?,?)", user)
 
+					# Commit the changes
+					connection.commit()
 
-			# Clear the frame and add navigation screen
-			for widgets in self.frame.winfo_children():
-				widgets.destroy()
+					# Clear the frame and add navigation screen
+					for widgets in self.frame.winfo_children():
+						widgets.destroy()
 
-			self.navigation_view()
+					self.navigation_view()
+				except Exception as error:
+					messagebox.showerror(title = 'Fetching Error', message=str(error))
+
+		else:
+			messagebox.showinfo(title="Sign Up", message="All fields should be filled out\nPassword should contain 8 characters or max")
 
 	def init_window(self):
 		self.master.title('Secure Password Locker')
