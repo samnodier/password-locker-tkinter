@@ -133,22 +133,43 @@ class Window(Frame):
 		username = self.username.get()
 		password = self.password.get()
 
-		# Validate data
-		# Create an add button to enable adding a new password
-		# While viewing the stored passwords
-		self.add_btn = Button(self.frame, text='Add', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
-		self.add_btn.grid(row=0, column=0, ipady=2, pady=(10,10), padx=(0, 20))
-		self.add_btn.bind('<Button-1>', self.add_password)
+		if self.validate_data(username, password):
+			try:
+				connection = sqlite3.connect(DATABASE)
+				cursor = connection.cursor()
+
+				# Validate login credentials
+				# Grab the user ciphered password
+
+				ciphered_password = [data for data in cursor.execute(f"SELECT password FROM {USERS_TABLE} WHERE username = '{username}'")][0][0].encode()
+
+				# Create a decrypting cipher suite
+				cipher_suite = Fernet(KEY)
+				unciphered_text = cipher_suite.decrypt(ciphered_password).decode()
+
+				if unciphered_text == password:
+					# Create an add button to enable adding a new password
+					# While viewing the stored passwords
+					self.add_btn = Button(self.frame, text='Add', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
+					self.add_btn.grid(row=0, column=0, ipady=2, pady=(10,10), padx=(0, 20))
+					self.add_btn.bind('<Button-1>', self.add_password)
 
 
-		# Clear the frame
-		for widgets in self.frame.winfo_children():
-			widgets.destroy()
+					# Clear the frame
+					for widgets in self.frame.winfo_children():
+						widgets.destroy()
 
-		# Add a navigation view
-		self.navigation_view()
+					# Add a navigation view
+					self.navigation_view()
 
-		print(f'Username = {username} & Password = {password}')
+					print(f'Username = {username} & Password = {password}')
+
+			except Exception as error:
+				messagebox.showerror(title = 'Login Error', message="Invalid crendentials")
+
+		else:
+			messagebox.showinfo(title="Sign Up", message="All fields should be filled out\nPassword should contain 8 characters or max")
+
 
 	# Create the logout function
 	def logout(self, event):
