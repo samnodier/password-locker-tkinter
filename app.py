@@ -138,6 +138,7 @@ class Window(Frame):
 				# Create the password tuple
 				pwd = (str(uuid.uuid4()), title, link, ciphered_text.decode())
 			else:
+				messagebox.showinfo(title="Sign Up", message="All fields should be filled out\nPassword should contain 8 characters or max")
 
 
 
@@ -180,7 +181,7 @@ class Window(Frame):
 				messagebox.showerror(title = 'Login Error', message="Invalid crendentials")
 
 		else:
-			messagebox.showinfo(title="Sign Up", message="All fields should be filled out\nPassword should contain 8 characters or max")
+			messagebox.showinfo(title="Login", message="All fields should be filled out\nPassword should contain 8 characters or max")
 
 
 	# Create the logout function
