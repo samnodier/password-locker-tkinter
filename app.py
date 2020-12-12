@@ -134,6 +134,8 @@ class Window(Frame):
 
 			if database_link:
 				Label(self.frame, text="Link already exist", font=('Arial', 8)).grid(row=6, column=0, pady=(40, 20), columnspan=3)
+			else:
+				# Grab the current user's id from the database
 				# Encrypt the password and store the data into the database
 				cipher_suite = Fernet(KEY)
 				ciphered_text = cipher_suite.encrypt(password.encode())
