@@ -16,7 +16,7 @@ KEY = b'7Jv5d64z6y6B9vHqs6FL0Dcppt8Tf-mPML4kyPXLeIY='
 os.chdir(os.path.abspath(os.path.dirname(__file__)))
 
 # Create a variable to hold the logged in user
-global user = None
+global session_user = None
 
 # Table name
 USERS_TABLE = 'USERS'
@@ -166,6 +166,9 @@ class Window(Frame):
 				unciphered_text = cipher_suite.decrypt(ciphered_password).decode()
 
 				if unciphered_text == password:
+					# If the we the user exists in the database
+					# Log him in and provide available services to him
+					session_user = username
 					# Create an add button to enable adding a new password
 					# While viewing the stored passwords
 					self.add_btn = Button(self.frame, text='Add', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
