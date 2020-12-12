@@ -15,6 +15,9 @@ KEY = b'7Jv5d64z6y6B9vHqs6FL0Dcppt8Tf-mPML4kyPXLeIY='
 
 os.chdir(os.path.abspath(os.path.dirname(__file__)))
 
+# Create a variable to hold the logged in user
+global user = None
+
 # Table name
 USERS_TABLE = 'USERS'
 PASSWORDS_TABLE = 'PASSWORDS'
@@ -130,15 +133,15 @@ class Window(Frame):
 			database_link = [row for row in cursor.execute(f"SELECT link FROM {PASSWORDS_TABLE} WHERE link = {link}")]
 
 			if database_link:
-				Label(self.frame, text="Username unavailable", font=('Arial', 8)).grid(row=6, column=0, pady=(40, 20), columnspan=3)
+				Label(self.frame, text="Link already exist", font=('Arial', 8)).grid(row=6, column=0, pady=(40, 20), columnspan=3)
 				# Encrypt the password and store the data into the database
 				cipher_suite = Fernet(KEY)
 				ciphered_text = cipher_suite.encrypt(password.encode())
 
 				# Create the password tuple
 				pwd = (str(uuid.uuid4()), title, link, ciphered_text.decode())
-			else:
-				messagebox.showinfo(title="Sign Up", message="All fields should be filled out\nPassword should contain 8 characters or max")
+		else:
+			messagebox.showinfo(title="Add Password", message="All fields should be filled out")
 
 
 
