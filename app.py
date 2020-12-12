@@ -136,12 +136,14 @@ class Window(Frame):
 				Label(self.frame, text="Link already exist", font=('Arial', 8)).grid(row=6, column=0, pady=(40, 20), columnspan=3)
 			else:
 				# Grab the current user's id from the database
+				session_user_id = [row[0] for row in c.execute(f"SELECT user_id FROM USERS WHERE username = '{session_user}'")][0]
+
 				# Encrypt the password and store the data into the database
 				cipher_suite = Fernet(KEY)
 				ciphered_text = cipher_suite.encrypt(password.encode())
 
 				# Create the password tuple
-				pwd = (str(uuid.uuid4()), title, link, ciphered_text.decode())
+				pwd = (str(uuid.uuid4()), title, link, ciphered_text.decode(), session_user_id)
 		else:
 			messagebox.showinfo(title="Add Password", message="All fields should be filled out")
 
