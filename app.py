@@ -129,23 +129,33 @@ class Window(Frame):
 		password = self.password.get()
 
 		if (len(link) > 0, len(password) > 0):
-			# Check if the link doesn't exist in the database
-			database_link = [row for row in cursor.execute(f"SELECT link FROM {PASSWORDS_TABLE} WHERE link = {link}")]
+			try:
+				connection = sqlite3.connect(DATABASE)
+				cursor = connection.cursor()
 
-			if database_link:
-				Label(self.frame, text="Link already exist", font=('Arial', 8)).grid(row=6, column=0, pady=(40, 20), columnspan=3)
-			else:
-				# Grab the current user's id from the database
-				session_user_id = [row[0] for row in c.execute(f"SELECT user_id FROM USERS WHERE username = '{session_user}'")][0]
+				# Check if the link doesn't exist in the database
+				database_link = [row for row in cursor.execute(f"SELECT link FROM {PASSWORDS_TABLE} WHERE link = {link}")]
 
-				# Encrypt the password and store the data into the database
-				cipher_suite = Fernet(KEY)
-				ciphered_text = cipher_suite.encrypt(password.encode())
+				if database_link:
+					Label(self.frame, text="Link already exist", font=('Arial', 8)).grid(row=6, column=0, pady=(40, 20), columnspan=3)
+				else:
+					# Grab the current user's id from the database
+					session_user_id = [row[0] for row in c.execute(f"SELECT user_id FROM USERS WHERE username = '{session_user}'")][0]
 
-				# Create the password tuple
-				pwd = (str(uuid.uuid4()), title, link, ciphered_text.decode(), session_user_id)
+					# Encrypt the password and store the data into the database
+					cipher_suite = Fernet(KEY)
+					ciphered_text = cipher_suite.encrypt(password.encode())
 
-				# Add pwd into the database
+					# Create the password tuple
+					pwd = (str(uuid.uuid4()), title, link, ciphered_text.decode(), session_user_id)
+
+					# Add pwd into the database
+					cursor.execute(f"INSERT INTO {PASSWORDS_TABLE} VALUES (?,?,?,?,?)", pwd)
+
+					# Commit the changes into the database
+					connection.commit()
+				except Exception as error:
+					messagebox.showerror(title = 'Add Data', message="Unable to add data\n Please try again.")
 		else:
 			messagebox.showinfo(title="Add Password", message="All fields should be filled out")
 
