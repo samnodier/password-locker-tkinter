@@ -227,6 +227,10 @@ class Window(Frame):
 
 					user = (str(uuid.uuid4()), username, ciphered_text.decode())
 
+					# After adding new user into the database
+					# Log him in and provide available services to him
+					session_user = username
+
 					# Insert the username and ciphered password into the database
 					cursor.execute(f"INSERT INTO {USERS_TABLE} VALUES (?,?,?)", user)
 
