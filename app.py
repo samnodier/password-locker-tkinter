@@ -144,6 +144,8 @@ class Window(Frame):
 
 				# Create the password tuple
 				pwd = (str(uuid.uuid4()), title, link, ciphered_text.decode(), session_user_id)
+
+				# Add pwd into the database
 		else:
 			messagebox.showinfo(title="Add Password", message="All fields should be filled out")
 
@@ -198,6 +200,9 @@ class Window(Frame):
 	def logout(self, event):
 		# Close the database once logging out
 		connection.close()
+
+		# Remove the session_user after logging out
+		session_user = None
 
 		# Clear the frame
 		for widgets in self.frame.winfo_children():
