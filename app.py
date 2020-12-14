@@ -80,6 +80,7 @@ class Window(Frame):
 		self.signup_btn = Button(self.frame, text='Sign Up', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
 		self.signup_btn.grid(row=3, column=1, ipady=2, pady=(10,10))
 		self.signup_btn.bind('<Button-1>', self.signup)
+		self.signup_btn.bind('<Enter>', self.signup)
 
 	# Navigation view
 	def navigation_view(self):
