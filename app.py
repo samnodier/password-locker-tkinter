@@ -76,7 +76,7 @@ class Window(Frame):
 		self.login_btn = Button(self.frame, text='Login', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=0, default=ACTIVE)
 		self.login_btn.grid(row=3, column=0, ipady=2, pady=(10,10))
 		self.login_btn.bind('<Button-1>', self.login)
-		self.login_btn.bind('<Enter>'self.login)
+		self.login_btn.bind('<Enter>', self.login)
 		self.signup_btn = Button(self.frame, text='Sign Up', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
 		self.signup_btn.grid(row=3, column=1, ipady=2, pady=(10,10))
 		self.signup_btn.bind('<Button-1>', self.signup)
