@@ -110,6 +110,7 @@ class Window(Frame):
 		self.logout_btn = Button(self.frame, text='Logout', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
 		self.logout_btn.grid(row=4, column=0, ipady=2, pady=(10,10), padx=(20,0), columnspan=2)
 		self.logout_btn.bind('<Button-1>', self.logout)
+		self.logout_btn.bind('<Enter>', self.logout)
 
 	# Validate the entered data
 	def validate_data(self, username, password):
