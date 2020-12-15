@@ -133,37 +133,37 @@ class Window(Frame):
 		password = self.password.get()
 
 		if (len(link) > 0, len(password) > 0):
-			# try:
-			connection = sqlite3.connect(DATABASE)
-			cursor = connection.cursor()
+			try:
+				connection = sqlite3.connect(DATABASE)
+				cursor = connection.cursor()
 
-			# Check if the link doesn't exist in the database
-			database_link = [row for row in cursor.execute(f"SELECT link FROM {PASSWORDS_TABLE} WHERE link = '{link}'")]
+				# Check if the link doesn't exist in the database
+				database_link = [row for row in cursor.execute(f"SELECT link FROM {PASSWORDS_TABLE} WHERE link = '{link}'")]
 
-			if database_link:
-				Label(self.frame, text="Link already exist", font=('Arial', 8)).grid(row=6, column=0, pady=(40, 20), columnspan=3)
-			else:
-				global session_user
-				print(session_user)
-				# Grab the current user's id from the database
-				session_user_id = [row[0] for row in cursor.execute(f"SELECT user_id FROM USERS WHERE username = '{session_user}'")][0]
+				if database_link:
+					Label(self.frame, text="Link already exist", font=('Arial', 8)).grid(row=6, column=0, pady=(40, 20), columnspan=3)
+				else:
+					global session_user
+					print(session_user)
+					# Grab the current user's id from the database
+					session_user_id = [row[0] for row in cursor.execute(f"SELECT user_id FROM USERS WHERE username = '{session_user}'")][0]
 
-				# Encrypt the password and store the data into the database
-				cipher_suite = Fernet(KEY)
-				ciphered_text = cipher_suite.encrypt(password.encode())
+					# Encrypt the password and store the data into the database
+					cipher_suite = Fernet(KEY)
+					ciphered_text = cipher_suite.encrypt(password.encode())
 
-				print(session_user_id, session_user, ciphered_text.decode(), title, link)
+					print(session_user_id, session_user, ciphered_text.decode(), title, link)
 
-				# Create the password tuple
-				pwd = (str(uuid.uuid4()), title, link, ciphered_text.decode(), session_user_id)
+					# Create the password tuple
+					pwd = (str(uuid.uuid4()), title, link, ciphered_text.decode(), session_user_id)
 
-				# Add pwd into the database
-				cursor.execute(f"INSERT INTO {PASSWORDS_TABLE} VALUES (?,?,?,?,?)", pwd)
+					# Add pwd into the database
+					cursor.execute(f"INSERT INTO {PASSWORDS_TABLE} VALUES (?,?,?,?,?)", pwd)
 
-				# Commit the changes into the database
-				connection.commit()
-			# except Exception as error:
-			# 	messagebox.showerror(title = 'Add Data', message=f"Unable to add data\n{str(error)}\nPlease try again.")
+					# Commit the changes into the database
+					connection.commit()
+			except Exception as error:
+				messagebox.showerror(title = 'Add Data', message=f"Unable to add data\n{str(error)}\nPlease try again.")
 		else:
 			messagebox.showinfo(title="Add Password", message="All fields should be filled out")
 
