@@ -143,6 +143,7 @@ class Window(Frame):
 			if database_link:
 				Label(self.frame, text="Link already exist", font=('Arial', 8)).grid(row=6, column=0, pady=(40, 20), columnspan=3)
 			else:
+				global session_user
 				print(session_user)
 				# Grab the current user's id from the database
 				session_user_id = [row[0] for row in cursor.execute(f"SELECT user_id FROM USERS WHERE username = '{session_user}'")][0]
