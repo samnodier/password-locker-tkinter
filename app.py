@@ -162,6 +162,11 @@ class Window(Frame):
 
 					# Commit the changes into the database
 					connection.commit()
+
+					# Clean the inputs
+					self.title.delete(0, END)
+					self.link.delete(0, END)
+					self.password.delete(0, END)
 			except Exception as error:
 				messagebox.showerror(title = 'Add Data', message=f"Unable to add data\n{str(error)}\nPlease try again.")
 		else:
