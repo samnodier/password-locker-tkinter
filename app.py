@@ -170,7 +170,7 @@ class Window(Frame):
 			except Exception as error:
 				messagebox.showerror(title = 'Add Data', message=f"Unable to add data\n{str(error)}\nPlease try again.")
 		else:
-			messagebox.showinfo(title="Add Password", message="All fields should be filled out")
+			messagebox.showinfo(title="Add Password", message="Link and Password can't be left blank")
 
 
 
