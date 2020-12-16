@@ -168,7 +168,7 @@ class Window(Frame):
 					self.link.delete(0, END)
 					self.password.delete(0, END)
 			except Exception as error:
-				messagebox.showerror(title = 'Add Data', message=f"Unable to add data\n{str(error)}\nPlease try again.")
+				Label(self.frame, text=f"{str(error)}", font=('Arial', 8)).grid(row=6, column=0, pady=(40, 20), columnspan=3)
 		else:
 			messagebox.showinfo(title="Add Password", message="Link and Password can't be left blank")
 
