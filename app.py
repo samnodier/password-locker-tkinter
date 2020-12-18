@@ -214,6 +214,7 @@ class Window(Frame):
 					Label(self.frame, text="Incorrect password", font=('Arial', 8)).grid(row=5, column=0, pady=(40, 20), columnspan=3)
 
 			except Exception as error:
+				Label(self.frame, text="Invalid crendentials", font=('Arial', 8)).grid(row=5, column=0, pady=(40, 20), columnspan=3)				
 				messagebox.showerror(title = 'Login Error', message="Invalid crendentials")
 
 		else:
