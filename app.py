@@ -214,8 +214,7 @@ class Window(Frame):
 					Label(self.frame, text="Incorrect password", font=('Arial', 8)).grid(row=5, column=0, pady=(40, 20), columnspan=3)
 
 			except Exception as error:
-				Label(self.frame, text="Invalid crendentials", font=('Arial', 8)).grid(row=5, column=0, pady=(40, 20), columnspan=3)				
-				messagebox.showerror(title = 'Login Error', message="Invalid crendentials")
+				Label(self.frame, text="Invalid length of crendentials", font=('Arial', 8)).grid(row=5, column=0, pady=(40, 20), columnspan=3)				
 
 		else:
 			messagebox.showinfo(title="Login", message="All fields should be filled out\nPassword should contain 8 characters or max")
