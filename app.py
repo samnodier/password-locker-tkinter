@@ -214,7 +214,7 @@ class Window(Frame):
 					Label(self.frame, text="Incorrect password", font=('Arial', 8)).grid(row=5, column=0, pady=(40, 20), columnspan=3)
 
 			except Exception as error:
-				Label(self.frame, text="Invalid length of crendentials", font=('Arial', 8)).grid(row=5, column=0, pady=(40, 20), columnspan=3)				
+				Label(self.frame, text="Invalid length of credentials", font=('Arial', 8)).grid(row=5, column=0, pady=(40, 20), columnspan=3)				
 
 		else:
 			Label(self.frame, text="All fields should be filled out\nPassword should contain 8 characters or max", font=('Arial', 8)).grid(row=5, column=0, pady=(40, 20), columnspan=3)
