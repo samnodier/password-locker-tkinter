@@ -218,7 +218,6 @@ class Window(Frame):
 
 		else:
 			Label(self.frame, text="All fields should be filled out\nPassword should contain 8 characters or max", font=('Arial', 8)).grid(row=5, column=0, pady=(40, 20), columnspan=3)
-			messagebox.showinfo(title="Login", message="All fields should be filled out\nPassword should contain 8 characters or max")
 
 
 	# Create the logout function
