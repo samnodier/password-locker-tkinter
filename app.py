@@ -278,6 +278,7 @@ class Window(Frame):
 
 					self.navigation_view()
 				except Exception as error:
+					Label(self.frame, text=f"{str(error)}", font=('Arial', 8)).grid(row=5, column=0, pady=(40, 20), columnspan=3)				
 					messagebox.showerror(title = 'Fetching Error', message=str(error))
 
 		else:
