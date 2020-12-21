@@ -282,7 +282,6 @@ class Window(Frame):
 
 		else:
 			Label(self.frame, text="All fields should be filled out\nPassword should contain 8 characters or max", font=('Arial', 8)).grid(row=5, column=0, pady=(40, 20), columnspan=3)
-			messagebox.showinfo(title="Sign Up", message="")
 
 	def init_window(self):
 		self.master.title('Secure Password Locker')
