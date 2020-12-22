@@ -123,6 +123,11 @@ class Window(Frame):
 		# Create the title of the frame for user orientation
 		Label(self.frame, text='Click the COPY button\nTo copy the password into the clipboard', font=('Arial', 12)).grid(row=0, column=0, columnspan=3,  pady=20)
 
+		# Fetch data from the database matching session_user
+		global session_user
+		
+
+
 	# Add password function
 	def add_password(self, event):
 		title = self.title.get()
