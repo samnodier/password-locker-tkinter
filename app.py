@@ -126,6 +126,9 @@ class Window(Frame):
 		# Fetch data from the database matching session_user
 		global session_user
 		
+		# Grab the current user's id from the database
+		session_user_id = [row[0] for row in cursor.execute(f"SELECT user_id FROM USERS WHERE username = '{session_user}'")][0]
+
 
 
 	# Add password function
