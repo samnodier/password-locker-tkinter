@@ -137,7 +137,7 @@ class Window(Frame):
 		link = self.link.get()
 		password = self.password.get()
 
-		if (len(link) > 0, len(password) > 0):
+		if (len(link) > 0 and len(password) > 0):
 			try:
 				connection = sqlite3.connect(DATABASE)
 				cursor = connection.cursor()
