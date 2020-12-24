@@ -303,6 +303,6 @@ class Window(Frame):
 
 connection.close()
 root = Tk()
-root.geometry("550x370")
+root.geometry("600x400")
 app = Window(root)
 root.mainloop()
