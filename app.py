@@ -142,17 +142,17 @@ class Window(Frame):
 				connection = sqlite3.connect(DATABASE)
 				cursor = connection.cursor()
 
+				global session_user
+				print(session_user)
+				# Grab the current user's id from the database
+				session_user_id = [row[0] for row in cursor.execute(f"SELECT user_id FROM USERS WHERE username = '{session_user}'")][0]
+
 				# Check if the link doesn't exist in the database
 				database_link = [row for row in cursor.execute(f"SELECT link FROM {PASSWORDS_TABLE} WHERE link = '{link}'")]
 
 				if database_link:
 					Label(self.frame, text="Link already exist", font=('Arial', 8)).grid(row=6, column=0, pady=(10, 20), columnspan=3)
 				else:
-					global session_user
-					print(session_user)
-					# Grab the current user's id from the database
-					session_user_id = [row[0] for row in cursor.execute(f"SELECT user_id FROM USERS WHERE username = '{session_user}'")][0]
-
 					# Encrypt the password and store the data into the database
 					cipher_suite = Fernet(KEY)
 					ciphered_text = cipher_suite.encrypt(password.encode())
