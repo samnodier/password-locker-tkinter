@@ -148,7 +148,7 @@ class Window(Frame):
 				session_user_id = [row[0] for row in cursor.execute(f"SELECT user_id FROM USERS WHERE username = '{session_user}'")][0]
 
 				# Check if the link doesn't exist in the database
-				database_link = [row for row in cursor.execute(f"SELECT link FROM {PASSWORDS_TABLE} WHERE link = '{link}'")]
+				database_link = [row for row in cursor.execute(f"SELECT link FROM {PASSWORDS_TABLE} WHERE link = '{link}' and password_owner = '{session_user_id}")]
 
 				if database_link:
 					Label(self.frame, text="Link already exist", font=('Arial', 8)).grid(row=6, column=0, pady=(10, 20), columnspan=3)
