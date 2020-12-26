@@ -223,7 +223,7 @@ class Window(Frame):
 					# Add a navigation view
 					self.navigation_view()
 				else:
-					Label(self.frame, text="Incorrect password", font=('Arial', 8)).grid(row=5, column=0, pady=(40, 20), columnspan=3)
+					Label(self.frame, text="Incorrect password", font=('Arial', 8)).grid(row=5, column=0, pady=(10, 20), columnspan=3)
 
 			except Exception as error:
 				Label(self.frame, text="Invalid username or password", font=('Arial', 8)).grid(row=5, column=0, pady=(40, 20), columnspan=3)				
