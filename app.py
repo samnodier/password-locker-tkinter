@@ -179,7 +179,7 @@ class Window(Frame):
 			except Exception as error:
 				Label(self.frame, text=f"{str(error)}", font=('Arial', 8)).grid(row=6, column=0, pady=(40, 20), columnspan=3)
 		else:
-			Label(self.frame, text="Link and Password can't be left blank", font=('Arial', 8)).grid(row=6, column=0, pady=(40, 20), columnspan=3)
+			Label(self.frame, text="Link and Password can't be left blank", font=('Arial', 8)).grid(row=6, column=0, pady=(10, 20), columnspan=3)
 
 
 
