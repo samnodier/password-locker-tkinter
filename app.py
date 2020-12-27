@@ -152,7 +152,7 @@ class Window(Frame):
 				session_user_id = [row[0] for row in cursor.execute(f"SELECT user_id FROM USERS WHERE username = '{session_user}'")][0]
 
 				# Check if the link doesn't exist in the database
-				database_link = [row for row in cursor.execute(f"SELECT link FROM {PASSWORDS_TABLE} WHERE link = '{link}' and password_owner = '{session_user_id}")]
+				database_link = [row for row in cursor.execute(f"SELECT link FROM {PASSWORDS_TABLE} WHERE link = '{link}' and password_owner = '{session_user_id}'")]
 
 				if database_link:
 					Label(self.frame, text="Link already exist", font=('Arial', 8)).grid(row=6, column=0, pady=(10, 20), columnspan=3)
@@ -177,7 +177,7 @@ class Window(Frame):
 					self.link.delete(0, END)
 					self.password.delete(0, END)
 			except Exception as error:
-				Label(self.frame, text=f"{str(error)}", font=('Arial', 8)).grid(row=6, column=0, pady=(10, 20), columnspan=3)
+				Label(self.frame, text=f"Database error:\n{str(error)}", font=('Arial', 8)).grid(row=6, column=0, pady=(10, 20), columnspan=3)
 		else:
 			Label(self.frame, text="Link and Password can't be left blank", font=('Arial', 8)).grid(row=6, column=0, pady=(10, 20), columnspan=3)
 
