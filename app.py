@@ -263,7 +263,7 @@ class Window(Frame):
 			user = [row for row in cursor.execute(f"SELECT username FROM {USERS_TABLE} WHERE username = '{username}'")]
 
 			if user:
-				Label(self.frame, text="Username unavailable", font=('Arial', 8)).grid(row=5, column=0, pady=(40, 20), columnspan=3)
+				Label(self.frame, text="Username unavailable", font=('Arial', 8)).grid(row=5, column=0, pady=(10, 20), columnspan=3)
 			else:
 				try:
 					# Username doesn't already exist in the database
