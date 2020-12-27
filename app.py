@@ -293,7 +293,7 @@ class Window(Frame):
 					Label(self.frame, text=f"{str(error)}", font=('Arial', 8)).grid(row=5, column=0, pady=(10, 20), columnspan=3)				
 
 		else:
-			Label(self.frame, text="All fields should be filled out\nPassword should contain 8 characters or max", font=('Arial', 8)).grid(row=5, column=0, pady=(40, 20), columnspan=3)
+			Label(self.frame, text="All fields should be filled out\nPassword should contain 8 characters or max", font=('Arial', 8)).grid(row=5, column=0, pady=(10, 20), columnspan=3)
 
 	def init_window(self):
 		self.master.title('Secure Password Locker')
