@@ -136,7 +136,7 @@ class Window(Frame):
 		# Grab the data from the database
 		data = cursor.execute(f"SELECT * FROM PASSWORDS WHERE password_owner = '{session_user_id}'")
 
-		headers = ['N°', 'Title', 'Link', 'Copy Password']
+		headers = ['N°', 'Title', 'Link', 'Copy this password']
 
 
 	# Add password function
