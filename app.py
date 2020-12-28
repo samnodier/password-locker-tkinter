@@ -136,7 +136,7 @@ class Window(Frame):
 		# Grab the data from the database
 		data = cursor.execute(f"SELECT * FROM PASSWORDS WHERE password_owner = '{session_user_id}'")
 
-		headers = ['N°', 'Title', 'Link', 'Copy this password']
+		headers = ['N°', 'Title', 'Link', 'Copy this pwd']
 
 		for header_col in range(len(headers)):
 			if header_col > 0 and header_col < 3:
@@ -146,7 +146,7 @@ class Window(Frame):
 			header_label = Label(self.frame, text=headers[header_col], width=header_width, font=('Arial', 10, 'bold'), relief=SOLID, borderwidth=1)
 			header_label.grid(row=1, column=header_col, ipady=4, sticky=W)
 		
-
+		
 
 	# Add password function
 	def add_password(self, event):
