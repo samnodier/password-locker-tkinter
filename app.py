@@ -133,6 +133,10 @@ class Window(Frame):
 		# Grab the current user's id from the database
 		session_user_id = [row[0] for row in cursor.execute(f"SELECT user_id FROM USERS WHERE username = '{session_user}'")][0]
 
+		# Grab the data from the database
+		data = cursor.execute(f"SELECT * FROM PASSWORDS WHERE password_owner = '{session_user_id}'")
+
+		headers = ['N°', 'Title', 'Link', 'Copy Password']
 
 
 	# Add password function
