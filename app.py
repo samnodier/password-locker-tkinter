@@ -139,7 +139,7 @@ class Window(Frame):
 		headers = ['N°', 'Title', 'Link', 'Copy this password']
 
 		for header_col in range(len(headers)):
-			header_label = Label(self.frame, text=headers[header_col][:15], width=15, font=('Arial', 10, 'bold', relief=SOLID, borderwidth=1))
+			header_label = Label(self.frame, text=headers[header_col][:15], width=15, font=('Arial', 10, 'bold'), relief=SOLID, borderwidth=1)
 			header_label.grid(row=0, column=header_col, ipady=4, sticky=W)
 		
 
