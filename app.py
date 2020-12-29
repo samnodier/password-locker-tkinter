@@ -154,10 +154,10 @@ class Window(Frame):
 			for col in range(len(data[row]) - 1):
 				if col == 0:
 					label_data = index
-					data_width = 10
+					data_width = 5
 				elif col == 3:
 					label_data = ''
-					data_width = 10
+					data_width = 15
 				else:
 					label_data = data[row][col]
 					data_width = 20
