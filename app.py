@@ -146,11 +146,12 @@ class Window(Frame):
 			header_label = Label(self.frame, text=headers[header_col], width=header_width, font=('Arial', 10, 'bold'), justify=LEFT, relief=SOLID, borderwidth=1)
 			header_label.grid(row=1, column=header_col, ipady=4, sticky=W)
 		
+		index = 0
 		for row in range(len(data)):
-			label_data = 0
+			index = index + 1
 			for col in range(len(data[row]) - 1):
 				if col == 0:
-					label_data = label_data + 1
+					label_data = index
 					data_width = 10
 				elif col == 3:
 					label_data = ''
