@@ -139,10 +139,12 @@ class Window(Frame):
 		headers = ['N°', 'Title', 'Link', 'Copy this pwd']
 
 		for header_col in range(len(headers)):
-			if header_col > 0 and header_col < 3:
+			if header_col == 0:
+				header_width = 5
+			elif header_col > 0 and header_col < 3:
 				header_width=20
 			else:
-				header_width=10
+				header_width=15
 			header_label = Label(self.frame, text=headers[header_col], width=header_width, font=('Arial', 10, 'bold'), justify=LEFT, relief=SOLID, borderwidth=1)
 			header_label.grid(row=1, column=header_col, ipady=4, sticky=W)
 		
