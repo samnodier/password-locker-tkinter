@@ -161,8 +161,9 @@ class Window(Frame):
 				else:
 					label_data = data[row][col]
 					data_width = 20
-				data_label = Label(self.frame, text=label_data, width=data_width, font=('Arial', 10), justify=LEFT, relief=SOLID, borderwidth=1)
-				data_label.grid(row = row+2, column=col, ipady=4, sticky=W)
+				data_label = Label(self.frame, text=label_data, width=data_width, font=('Arial', 10), anchor=W, relief=SOLID, borderwidth=1)
+				data_label.grid(row = row+2, column=col, ipady=5, sticky=W)
+				copy_btn = Button(self.frame)
 
 	# Add password function
 	def add_password(self, event):
