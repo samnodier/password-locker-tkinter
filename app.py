@@ -147,9 +147,10 @@ class Window(Frame):
 			header_label.grid(row=1, column=header_col, ipady=4, sticky=W)
 		
 		for row in range(len(data)):
+			label_data = 0
 			for col in range(len(data[row]) - 1):
 				if col == 0:
-					label_data = col + 1
+					label_data = label_data + 1
 					data_width = 10
 				elif col == 3:
 					label_data = ''
