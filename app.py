@@ -143,10 +143,22 @@ class Window(Frame):
 				header_width=20
 			else:
 				header_width=10
-			header_label = Label(self.frame, text=headers[header_col], width=header_width, font=('Arial', 10, 'bold'), relief=SOLID, borderwidth=1)
+			header_label = Label(self.frame, text=headers[header_col], width=header_width, font=('Arial', 10, 'bold'), justify=LEFT, relief=SOLID, borderwidth=1)
 			header_label.grid(row=1, column=header_col, ipady=4, sticky=W)
 		
-		
+		for row in range(len(data)):
+			for col in range(len(data[row]) - 1):
+				if col == 0:
+					label_data = col + 1
+					data_width = 10
+				elif col == 3:
+					label_data = ''
+					data_width = 10
+				else:
+					label_data = data[row][col]
+					data_width = 20
+				data_label = Label(self.frame, text=label_data, width=data_width, font=('Arial', 10), justify=LEFT, relief=SOLID, borderwidth=1)
+				data_label.grid(row = row+2, column=col, ipady=4, sticky=W)
 
 	# Add password function
 	def add_password(self, event):
