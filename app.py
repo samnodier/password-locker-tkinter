@@ -222,6 +222,7 @@ class Window(Frame):
 		connection.close()
 
 		# Remove the session_user after logging out
+		global session_user
 		session_user = None
 
 		# Clear the frame
