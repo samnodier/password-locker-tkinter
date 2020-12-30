@@ -191,6 +191,7 @@ class Window(Frame):
 				if unciphered_text == password:
 					# If the we the user exists in the database
 					# Log him in and provide available services to him
+					global session_user
 					session_user = username
 					print(session_user)
 					# Create an add button to enable adding a new password
