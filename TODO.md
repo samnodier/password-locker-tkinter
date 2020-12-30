@@ -3,6 +3,6 @@ password storing application.
 
 - [x] Create the front-end structure of application
 - [x] Configure the application with database
-- [ ] Populate the application with sample data
+- [x] Populate the application with sample data
 - [ ] Render data to application from database
 - [ ] Add security by encrypting passwords
