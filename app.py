@@ -143,12 +143,15 @@ class Window(Frame):
 			if database_link:
 				Label(self.frame, text="Link already exist", font=('Arial', 8)).grid(row=6, column=0, pady=(40, 20), columnspan=3)
 			else:
+				print(session_user)
 				# Grab the current user's id from the database
 				session_user_id = [row[0] for row in cursor.execute(f"SELECT user_id FROM USERS WHERE username = '{session_user}'")][0]
 
 				# Encrypt the password and store the data into the database
 				cipher_suite = Fernet(KEY)
 				ciphered_text = cipher_suite.encrypt(password.encode())
+
+				print(session_user_id, session_user, ciphered_text.decode(), title, link)
 
 				# Create the password tuple
 				pwd = (str(uuid.uuid4()), title, link, ciphered_text.decode(), session_user_id)
@@ -189,6 +192,7 @@ class Window(Frame):
 					# If the we the user exists in the database
 					# Log him in and provide available services to him
 					session_user = username
+					print(session_user)
 					# Create an add button to enable adding a new password
 					# While viewing the stored passwords
 					self.add_btn = Button(self.frame, text='Add', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
@@ -254,6 +258,7 @@ class Window(Frame):
 
 					# After adding new user into the database
 					# Log him in and provide available services to him
+					global session_user
 					session_user = username
 
 					# Insert the username and ciphered password into the database
