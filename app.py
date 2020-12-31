@@ -257,7 +257,7 @@ class Window(Frame):
 				cipher_suite = Fernet(KEY)
 				deciphered_text = cipher_suite.decrypt(ciphered_password).decode()
 
-				if unciphered_text == password:
+				if deciphered_text == password:
 					# If the we the user exists in the database
 					# Log him in and provide available services to him
 					global session_user
