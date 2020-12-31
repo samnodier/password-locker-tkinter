@@ -2,7 +2,6 @@ import os
 import sqlite3
 import uuid
 from tkinter import *
-from tkinter import messagebox
 
 import pyperclip
 from cryptography.fernet import Fernet
