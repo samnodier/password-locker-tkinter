@@ -106,7 +106,7 @@ class Window(Frame):
 		self.password.grid(row=3, column=1, ipady=4, ipadx=5, pady=(10, 20))
 
 		# Add a logout button
-		self.logout_btn = Button(self.frame, text='Logout', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
+		self.logout_btn = Button(self.frame, text='Logout', font=('Arial', 10), cursor='hand2', width=12, height=1, relief=SOLID, borderwidth=1)
 		self.logout_btn.grid(row=4, column=0, ipady=2, pady=(10,10), padx=(20,0), columnspan=2)
 		self.logout_btn.bind('<Button-1>', self.logout)
 
