@@ -180,7 +180,14 @@ class Window(Frame):
 		unciphered_text = cipher_suite.decrypt(password.encode()).decode()
 		pyperclip.copy(unciphered_text)
 
+	# A function to navigate the user back to add password
+	def add_password_view(self, event):
+		# Clear the frame
+		for widgets in self.frame.winfo_children():
+			widgets.destroy()
 
+		# Draw the navigation view
+		self.navigation_view()
 
 	# Add password function
 	def add_password(self, event):
