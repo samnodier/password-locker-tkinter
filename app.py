@@ -177,7 +177,7 @@ class Window(Frame):
 	def copy_password(self, password):
 		# Create a decrypting cipher suite
 		cipher_suite = Fernet(KEY)
-		unciphered_text = cipher_suite.decrypt(password.encode()).decode()
+		deciphered_text = cipher_suite.decrypt(password.encode()).decode()
 		pyperclip.copy(unciphered_text)
 
 	# A function to navigate the user back to add password
