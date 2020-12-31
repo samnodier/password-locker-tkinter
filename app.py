@@ -165,11 +165,11 @@ class Window(Frame):
 				data_label.grid(row = row+2, column=col, ipady=5, sticky=W)
 				copy_btn = Button(self.frame, text='Copy', font=('Arial', 9), width=15, height=1, relief=SOLID, borderwidth=0)
 				copy_btn.grid(row = row+2, column=3, ipady=2, sticky=W)
-				copy_btn.bind('<Button-1>', self.copy_password)
+				copy_btn.bind('<Button-1>', lambda event, password = data[row][3]: self.copy_password(password))
 
 	# Copy password function
-	def copy_password(self, event):
-		pass
+	def copy_password(self, password):
+		print(password)
 
 	# Add password function
 	def add_password(self, event):
