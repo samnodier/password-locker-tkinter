@@ -178,7 +178,7 @@ class Window(Frame):
 		# Create a decrypting cipher suite
 		cipher_suite = Fernet(KEY)
 		deciphered_text = cipher_suite.decrypt(password.encode()).decode()
-		pyperclip.copy(unciphered_text)
+		pyperclip.copy(deciphered_text)
 
 	# A function to navigate the user back to add password
 	def add_password_view(self, event):
