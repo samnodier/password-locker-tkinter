@@ -126,11 +126,11 @@ class Window(Frame):
 
 		# Create two navigation buttons
 		self.add_btn = Button(self.frame, text='Add', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
-		self.add_btn.grid(row=1, column=0, ipady=2, pady=(10,10), padx=(0, 20))
+		self.add_btn.grid(row=1, column=0, ipady=2, pady=(10,10), columnspan=4, padx=(0, 20))
 		self.add_btn.bind('<Button-1>', self.add_password)
 
 		self.view_btn = Button(self.frame, text='View', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
-		self.view_btn.grid(row=1, column=1, ipady=2, pady=(10,10), padx=(20, 0))
+		self.view_btn.grid(row=1, column=1, ipady=2, pady=(10,10), columnspan=4, padx=(20, 0))
 		self.view_btn.bind('<Button-1>', self.view_passwords)
 
 
@@ -157,7 +157,7 @@ class Window(Frame):
 			else:
 				header_width=15
 			header_label = Label(self.frame, text=headers[header_col], width=header_width, font=('Arial', 10, 'bold'), justify=LEFT, relief=SOLID, borderwidth=1)
-			header_label.grid(row=1, column=header_col, ipady=4, sticky=W)
+			header_label.grid(row=2, column=header_col, ipady=4, sticky=W)
 		
 		index = 0
 		for row in range(len(data)):
@@ -173,9 +173,9 @@ class Window(Frame):
 					label_data = data[row][col]
 					data_width = 20
 				data_label = Label(self.frame, text=label_data, width=data_width, font=('Arial', 10), anchor=W, relief=SOLID, borderwidth=1)
-				data_label.grid(row = row+2, column=col, ipady=5, sticky=W)
+				data_label.grid(row = row+3, column=col, ipady=5, sticky=W)
 				copy_btn = Button(self.frame, text='Copy', font=('Arial', 9), width=15, height=1, relief=SOLID, borderwidth=0)
-				copy_btn.grid(row = row+2, column=3, ipady=2, sticky=W)
+				copy_btn.grid(row = row+3, column=3, ipady=2, sticky=W)
 				copy_btn.bind('<Button-1>', lambda event, password = data[row][3]: self.copy_password(password))
 
 	# Copy password function
