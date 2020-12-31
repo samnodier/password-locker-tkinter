@@ -1,6 +1,5 @@
 import os
 import sqlite3
-import sys
 import uuid
 from tkinter import *
 from tkinter import messagebox
