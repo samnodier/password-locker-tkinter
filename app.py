@@ -1,12 +1,12 @@
 import os
 import sqlite3
 import sys
-import pyperclip
 import uuid
-
-from cryptography.fernet import Fernet
 from tkinter import *
 from tkinter import messagebox
+
+import pyperclip
+from cryptography.fernet import Fernet
 
 # Encryption key
 KEY = b'7Jv5d64z6y6B9vHqs6FL0Dcppt8Tf-mPML4kyPXLeIY='
