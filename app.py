@@ -167,6 +167,10 @@ class Window(Frame):
 				copy_btn.grid(row = row+2, column=3, ipady=2, sticky=W)
 				copy_btn.bind('<Button-1>', self.copy_password)
 
+	# Copy password function
+	def copy_password(self, event):
+		pass
+
 	# Add password function
 	def add_password(self, event):
 		title = self.title.get()
