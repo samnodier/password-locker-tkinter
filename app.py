@@ -169,7 +169,10 @@ class Window(Frame):
 
 	# Copy password function
 	def copy_password(self, password):
-		print(password)
+		# Create a decrypting cipher suite
+		cipher_suite = Fernet(KEY)
+		unciphered_text = cipher_suite.decrypt(password.encode()).decode()
+		
 
 	# Add password function
 	def add_password(self, event):
