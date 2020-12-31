@@ -265,7 +265,7 @@ class Window(Frame):
 					print(session_user)
 					# Create an add button to enable adding a new password
 					# While viewing the stored passwords
-					self.add_btn = Button(self.frame, text='Add', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
+					self.add_btn = Button(self.frame, text='Add', font=('Arial', 10), cursor='hand2', width=12, height=1, relief=SOLID, borderwidth=1)
 					self.add_btn.grid(row=0, column=0, ipady=2, pady=(10,10), padx=(0, 20))
 					self.add_btn.bind('<Button-1>', self.add_password)
 
