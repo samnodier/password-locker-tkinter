@@ -165,6 +165,7 @@ class Window(Frame):
 				data_label.grid(row = row+2, column=col, ipady=5, sticky=W)
 				copy_btn = Button(self.frame, text='Copy', font=('Arial', 9), width=15, height=1, relief=SOLID, borderwidth=0)
 				copy_btn.grid(row = row+2, column=3, ipady=2, sticky=W)
+				copy_btn.bind('<Button-1>', self.copy_password)
 
 	# Add password function
 	def add_password(self, event):
