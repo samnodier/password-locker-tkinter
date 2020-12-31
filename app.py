@@ -125,7 +125,7 @@ class Window(Frame):
 		Label(self.frame, text='Click the COPY button\nTo copy the password into the clipboard', font=('Arial', 12)).grid(row=0, column=0, columnspan=4,  pady=20)
 
 		# Create two navigation buttons
-		self.add_btn = Button(self.frame, text='Add passwords', font=('Arial', 10), width=12, height=1, relief=SOLID, borderwidth=1)
+		self.add_btn = Button(self.frame, text='Add passwords', font=('Arial', 10), cursor='hand2', width=12, height=1, relief=SOLID, borderwidth=1)
 		self.add_btn.grid(row=1, column=0, ipady=2, pady=(10,10), columnspan=4, padx=(0, 20))
 		self.add_btn.bind('<Button-1>', self.add_password_view)
 
