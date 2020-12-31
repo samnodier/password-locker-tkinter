@@ -1,6 +1,7 @@
 import os
 import sqlite3
 import sys
+import pyperclip
 import uuid
 
 from cryptography.fernet import Fernet
@@ -172,7 +173,7 @@ class Window(Frame):
 		# Create a decrypting cipher suite
 		cipher_suite = Fernet(KEY)
 		unciphered_text = cipher_suite.decrypt(password.encode()).decode()
-		
+		pyperclip.copy(unciphered_text)
 
 	# Add password function
 	def add_password(self, event):
