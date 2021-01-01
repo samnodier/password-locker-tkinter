@@ -131,3 +131,6 @@ dmypy.json
 # You can get rid of this line
 # Untrack my descriptive text files
 *.txt
+
+# Remove some auto created databases
+*.db
