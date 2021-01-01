@@ -5,4 +5,4 @@ password storing application.
 - [x] Configure the application with database
 - [x] Populate the application with sample data
 - [x] Render data to application from database
-- [ ] Add security by encrypting passwords
+- [x] Add security by encrypting passwords
