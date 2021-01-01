@@ -42,3 +42,16 @@ From this point you have to click on Copy button next to every password to get y
 
 ## App dependencies
 
+- `os` [Comes with `python3.8`]
+- `sqlite3` [`pip install sqlite3`]
+- `uuid` [`pip install uuid`]
+- `tkinter` [`pip install tkinter`]
+- `pyperclip` [`pip install pyperclip`]
+- `cryptography.fernet` [**Fernet** `pip install cryptography`]
+
+## App specification
+
+The functionalities and specification of the application can be easily viewed in **TODO.md** file where I walk through what I did to get the full functioning application.
+
+## Contribution
+
