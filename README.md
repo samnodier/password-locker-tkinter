@@ -55,3 +55,4 @@ The functionalities and specification of the application can be easily viewed in
 
 ## Contribution
 
+Anyone can contribute to this application as some of the functionalities are missing but might be included later.
