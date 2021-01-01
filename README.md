@@ -22,4 +22,23 @@ python app.py
 ```
 
 ## How to use
-Once you got the application up and running, 
+
+![Add password view](./img/add_password.JPG)
+
+Once you got the application up and running, if it's your first time to run the application you have to create an account by clicking **sign up** button and fill in all the credentials.
+You will then be directed to the place where you'll enter the data related to the password you want to store. These include **title, link, and password**.
+
+Fill in the credentials as needed and then click on add password button to save the password into the database embedded with the application.
+
+After having couple your passwords stored in the application database, you can now go to **View** passwords, to see the list of stored passwords.
+
+![View passwords window](./img/view_password.JPG)
+
+From this point you have to click on Copy button next to every password to get your password _copied into your clipboard_ and the paste it wherever you want.
+
+<div style="color: orange;">
+    NOTE: Anytime there is a problem adding, accessing, or modifying data. There is a helpful message at the bottom of the application.
+</div>
+
+## App dependencies
+
